@@ -5,3 +5,7 @@
 ### yfinance
 
 ``` pip install yfinance ```
+
+### Streamlit
+
+``` pip install streamlit ```
