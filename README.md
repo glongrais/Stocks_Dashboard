@@ -1,6 +1,12 @@
 # Stocks Dashboard
 
-## To Run the App
+### Table of Content
+
+[Run the App](#run-the-app)   
+[Ressources](#Ressources)   
+
+
+## Run the App
 
 For Linux and MacOS, if venv activate the Python environment:
 
