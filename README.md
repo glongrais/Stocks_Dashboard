@@ -21,21 +21,21 @@ Run the Streamlit server:
 
 The portfolio is stored in the JSON file in ``` ./ressources/stocks.json ```. The file follow this structure:
 
-```yaml
+```json
 [
     {   
         "name": "Air Liquide",
         "symbol":"AI.PA",
-        "quantity":4,
-        "price":138.62,
-        "desired_percentage":7.5
+        "quantity":10,
+        "price":120.7,
+        "desired_percentage":10
     },
     {   
         "name": "Airbus",
         "symbol":"AIR.PA",
-        "quantity":12,
-        "price":61,
-        "desired_percentage":10
+        "quantity":20,
+        "price":55,
+        "desired_percentage":15
     },
     ...
 ]
