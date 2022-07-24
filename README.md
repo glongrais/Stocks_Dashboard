@@ -11,11 +11,11 @@
 
 For Linux and MacOS, if venv activate the Python environment:
 
-``` source /path/to/{venv name}/bin/activate ```
+``` source {venv name}/bin/activate ```
 
 Run the Streamlit server:  
 
-``` streamlit run main.py ```
+``` streamlit run Home.py ```
 
 ## Source File
 
