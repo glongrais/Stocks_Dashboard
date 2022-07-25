@@ -1,4 +1,3 @@
-from email.contentmanager import raw_data_manager
 import yfinance as yf
 
 raw_data = None

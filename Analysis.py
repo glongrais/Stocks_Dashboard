@@ -1,5 +1,7 @@
 import yfinance as yf
+import streamlit as st
 
+@st.cache
 def get_total_value(data, quantity):
     total = 0
     for s in data:
