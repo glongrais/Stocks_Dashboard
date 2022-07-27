@@ -15,6 +15,7 @@ db = SQLAlchemy(app)
 def db_init():
     global app, db
     db.init_app(app)
+    db.drop_all()
     db.create_all()
 
 class Stock(db.Model):
