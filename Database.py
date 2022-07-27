@@ -42,10 +42,10 @@ class TransactionType(enum.Enum):
     DIVIDEND = "DIVIDEND"
 
 class Transaction(db.Model):
-    id = db.Column(db.integer, nullable=False, primary_key=True)
+    id = db.Column(db.Integer, nullable=False, primary_key=True)
     date = db.Column(db.DateTime, nullable=False)
     symbol = db.Column(db.String(50), nullable=False)
-    type = db.Coluumn(db.Enum(TransactionType), nullable=False)
+    type = db.Column(db.Enum(TransactionType), nullable=False)
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
 
