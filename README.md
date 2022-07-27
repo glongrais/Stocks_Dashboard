@@ -54,3 +54,15 @@ The portfolio is stored in the JSON file in ``` ./ressources/stocks.json ```. Th
 [Streamlit](https://streamlit.io) librairy to generate the webserver as well as the dashboard's assets
 
 ``` pip install streamlit ```
+
+### Flask
+
+[Flask](https://flask.palletsprojects.com/en/2.1.x/) is a micro web framework used to connect with the database
+
+``` pip install flask ```
+
+### Flask SQLAlchemy
+
+[Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) is an extension for Flask that adds support for SQLAlchemy to your application
+
+``` pip install flask_sqlalchemy ```
