@@ -3,6 +3,7 @@ import streamlit as st
 import File_load as fl
 import Analysis as an
 import API_call as ac
+import Database as db
 
 portfolio_path = "ressources/stocks.json"
 
@@ -13,6 +14,8 @@ fl.load_file(portfolio_path)
 stocks_list = []
 quantity = {}
 pru = {}
+
+db.db_init()
 
 for s in fl.json_data:
     stocks_list.append(s['symbol'])
