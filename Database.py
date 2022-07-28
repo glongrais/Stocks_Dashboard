@@ -1,3 +1,4 @@
+from datetime import datetime
 import enum
 import string
 from flask import Flask
@@ -19,7 +20,17 @@ def db_init():
     db.drop_all()
     db.create_all()
 
+def add_stock(symbol: string, name: string, sector: string):
+    l = Line(symbol=symbol, quantity=quantity, price=price, desired_percentage=desired_percentage)
+    db.session.add(l)
+    db.session.commit()
+
 def add_line(symbol: string, price: float, quantity: int, desired_percentage: float):
+    l = Line(symbol=symbol, quantity=quantity, price=price, desired_percentage=desired_percentage)
+    db.session.add(l)
+    db.session.commit()
+
+def add_transaction(date: datetime, type: enum.Enum, symbol: string, price: float, quantity: int):
     l = Line(symbol=symbol, quantity=quantity, price=price, desired_percentage=desired_percentage)
     db.session.add(l)
     db.session.commit()
