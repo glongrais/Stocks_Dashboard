@@ -1,4 +1,5 @@
 import enum
+import string
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import streamlit as st
@@ -18,6 +19,11 @@ def db_init():
     db.drop_all()
     db.create_all()
 
+def add_line(symbol: string, price: float, quantity: int, desired_percentage: float):
+    l = Line(symbol=symbol, quantity=quantity, price=price, desired_percentage=desired_percentage)
+    db.session.add(l)
+    db.session.commit()
+
 class Stock(db.Model):
     symbol = db.Column(db.String(20), nullable=False, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -31,7 +37,7 @@ class Line(db.Model):
     symbol = db.Column(db.String(20), nullable=False, primary_key=True)
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    desired_percent = db.Column(db.Float, nullable=False)
+    desired_percentage = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
         return '<Line %r>' % self.symbol
