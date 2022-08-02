@@ -1,5 +1,5 @@
 import json as js
-from Database import add_line
+from Database_operations import add_line
 
 json_data = None
 
@@ -8,4 +8,4 @@ def load_file(name):
     f = open(name)
     json_data = js.load(f)
     for s in json_data:
-        add_line(symbol=s['symbol'], quantity=int(s['quantity']),price=float(s['price']),desired_percentage=float(s['desired_percentage']))
+        add_line(symbol=s['symbol'], quantity=int(s['quantity']),price=float(s['price']),desiredPercentage=float(s['desired_percentage']))
