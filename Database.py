@@ -17,3 +17,16 @@ def db_init():
     db.init_app(app)
     db.drop_all()
     db.create_all()
+
+def get_stocks_symbol_list():
+    query = f'SELECT symbol FROM Line'
+    response = db.session.execute(query)
+    values = response.fetchall()
+    result = [v['symbol'] for v in values]
+    return result
+
+def get_stocks_column(column):
+    query = f'SELECT '+column+' FROM Stock'
+    response = db.session.execute(query)
+    result = response.fetchall()
+    return result

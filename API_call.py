@@ -1,11 +1,10 @@
 import yfinance as yf
+import streamlit as st
+from Database_operations import add_stock
 
-raw_data = None
-
+@st.cache
 def load_data(stock_list):
-    global raw_data
-    raw_data = yf.Tickers(stock_list)
+    tickers = yf.Tickers(stock_list)
 
-def get_raw_data():
-    global raw_data
-    return raw_data
+    for t in tickers.tickers.values():
+        stock = t.info
