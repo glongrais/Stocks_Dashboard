@@ -1,19 +1,23 @@
 import yfinance as yf
 import streamlit as st
-from Database import db
+import Database as db
 
 @st.cache
-def get_total_value(data, quantity):
+def get_total_value():
     total = 0
-    for s in data:
-        total += data[s].history(period='5d').iloc[-1]['Close']*quantity[s]
+    quantity = db.get_lines_column('quantity')
+
+    for s in quantity:
+        total += quantity[s] * db.get_stock_current_price_from_symbol(s)
 
     return int(total)
 
-def get_portfolio_performance(data, quantity, pru):
-    total = get_total_value(data, quantity)
+def get_portfolio_performance():
+    total = get_total_value()
     bought = 0.0
-    for s in quantity:
-        bought += quantity[s] * pru[s]
+
+    data = db.get_lines_columns('quantity, price')
+    for i in range(len(data)):
+        bought += data[i]['quantity'] * data[i]['price']
     
     return int((float(total*100)/bought)-100)

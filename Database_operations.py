@@ -4,7 +4,7 @@ import string
 from datetime import datetime
 
 def add_stock(symbol: string, name: string, currentPrice:float, previousClose:float, sector: string, dividendYield:float, logoUrl:string):
-    s = Stock(symbol=symbol, name=name, currentPrice=currentPrice, previouslose=previousClose, sector=sector, dividendYield=dividendYield, logoUrl=logoUrl)
+    s = Stock(symbol=symbol, name=name, currentPrice=currentPrice, previousClose=previousClose, sector=sector, dividendYield=dividendYield, logoUrl=logoUrl)
     db.session.add(s)
     db.session.commit()
 

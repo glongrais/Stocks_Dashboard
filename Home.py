@@ -24,10 +24,9 @@ for s in json_data:
 
 ac.load_data(" ".join(stocks_list))
 total_value = an.get_total_value()
-"""
-protfolio_performance = an.get_portfolio_performance(ac.get_raw_data().tickers, quantity, pru)
+
+protfolio_performance = an.get_portfolio_performance()
 
 st.metric("Total amount", str(total_value)+"€", delta=str(protfolio_performance)+"%")
-st.write(ac.get_raw_data().tickers["AI.PA"].info)
-"""
+
 st.sidebar.button('Refresh', on_click=st.legacy_caching.clear_cache)
