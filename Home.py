@@ -22,7 +22,7 @@ for s in json_data:
     quantity[s['symbol']] = int(s['quantity'])
     pru[s['symbol']] = float(s['price'])
 
-ac.load_data(" ".join(stocks_list))
+ac.load_data(stocks_list)
 total_value = an.get_total_value()
 
 protfolio_performance = an.get_portfolio_performance()
