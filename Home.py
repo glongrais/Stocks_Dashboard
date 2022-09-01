@@ -24,9 +24,15 @@ for s in json_data:
 
 ac.load_data(stocks_list)
 total_value = an.get_total_value()
+total_dividend_amount = an.get_yearly_dividend_amount()
+total_dividend_percentage = an.get_yearly_dividend_percentage()
 
 protfolio_performance = an.get_portfolio_performance()
 
-st.metric("Total amount", str(total_value)+"€", delta=str(protfolio_performance)+"%")
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Total amount", str(total_value)+"€", delta=str(protfolio_performance)+"%")
+col2.metric("Dividend €", str(total_dividend_amount)+"€")
+col3.metric("Dividend %", str(total_dividend_percentage)+"%")
 
 st.sidebar.button('Refresh', on_click=st.legacy_caching.clear_cache)

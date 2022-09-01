@@ -55,3 +55,12 @@ def get_stock_current_price_from_symbol(symbol):
         result = value[0]['currentPrice']
     return result
 
+def get_stock_field_from_symbol(field, symbol):
+    query = f'SELECT '+field+' FROM Stock WHERE symbol=\''+symbol+'\''
+    response = db.session.execute(query)
+    value = response.fetchall()
+    result = 0
+    if len(value) > 0:
+        result = value[0][field]
+    return result
+
