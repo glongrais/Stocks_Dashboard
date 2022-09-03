@@ -5,6 +5,13 @@ import Analysis as an
 import API_call as ac
 import Database as db
 
+from Models import Stock
+
+def button_call():
+    Stock.__table__.drop()
+    Stock.__table__.create(db.session.bind, checkfirst=True)
+    st.legacy_caching.clear_cache()
+
 portfolio_path = "ressources/stocks.json"
 
 st.title('Portfolio Dashboard')
@@ -35,4 +42,4 @@ col1.metric("Total amount", str(total_value)+"€", delta=str(protfolio_performa
 col2.metric("Dividend €", str(total_dividend_amount)+"€")
 col3.metric("Dividend %", str(total_dividend_percentage)+"%")
 
-st.sidebar.button('Refresh', on_click=st.legacy_caching.clear_cache)
+st.sidebar.button('Refresh', on_click=button_call)

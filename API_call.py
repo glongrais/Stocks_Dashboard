@@ -2,6 +2,8 @@ import yfinance as yf
 import streamlit as st
 import threading
 from Database_operations import add_stock
+from Models import Stock
+from Database import db
 
 @st.cache(suppress_st_warning=True)
 def load_data(stock_list):
