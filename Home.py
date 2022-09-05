@@ -8,8 +8,8 @@ import Database as db
 from Models import Stock
 
 def button_call():
-    Stock.__table__.drop()
-    Stock.__table__.create(db.session.bind, checkfirst=True)
+    Stock.__table__.drop(db.db.engine)
+    Stock.__table__.create(db.db.session.bind, checkfirst=True)
     st.legacy_caching.clear_cache()
 
 portfolio_path = "ressources/stocks.json"
