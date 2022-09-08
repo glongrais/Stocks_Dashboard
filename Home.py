@@ -55,7 +55,7 @@ col4, col5, col6, col7 = st.columns(4)
 col4.write("Dividend goal : ")
 col5.progress(int(round(total_dividend_amount*100/st.session_state['dividend_goal'],0)))
 col6.write(str(int(round(total_dividend_amount*100/st.session_state['dividend_goal'],0))) + " \% of "+str(st.session_state['dividend_goal'])+"€ / year")
-b1 = col7.button(label="Edit goal", on_click=edit_goal_dividend)
+col7.button(label="Edit goal", key=0, on_click=edit_goal_dividend)
 
 
 col4, col5, col6, col8 = st.columns(4)
@@ -63,6 +63,6 @@ col4, col5, col6, col8 = st.columns(4)
 col4.write("Portfolio goal :")
 col5.progress(int(round(total_value*100/500000,0)))
 col6.write(str(int(round(total_value*100/500000,0))) + " \% of 500 000 € ")
-b2 = col8.button(label="Edit goal")
+col8.button(label="Edit goal", key=1)
 
 st.sidebar.button('Refresh', on_click=button_call)
