@@ -46,6 +46,12 @@ def get_lines_columns(column):
     result = response.fetchall()
     return result
 
+def get_stocks_columns(column):
+    query = f'SELECT '+column+',symbol FROM Stock'
+    response = db.session.execute(query)
+    result = response.fetchall()
+    return result
+
 def get_stock_current_price_from_symbol(symbol):
     query = f'SELECT currentPrice FROM Stock WHERE symbol=\''+symbol+'\''
     response = db.session.execute(query)
