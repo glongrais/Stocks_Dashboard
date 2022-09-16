@@ -34,13 +34,40 @@ df = pd.merge(df, df3, on=["Symbol"])
 
 df_for_computation = df.copy()
 
-df_for_computation = df_for_computation.assign(sortval = df_for_computation["Owned Percentage"] - df_for_computation["Desired Percentage"]).sort_values('sortval').drop('sortval', 1)
+df_for_computation = df_for_computation.assign(sortval = df_for_computation["Owned Percentage"] - df_for_computation["Desired Percentage"]).sort_values('sortval')#.drop('sortval', 1)
 
-st.table(df_for_computation)
+to_buy_number = {}
 
-for i in range(len(df_for_computation)):
-    print(df_for_computation.iloc[i]["Symbol"])
+total_amount_eur = 0
 
-df = df[["Symbol", "Name", "Quantity", "Current Price", "Owned Percentage", "Desired Percentage"]]
+for i in range(df.shape[0]):
+    if df_for_computation.iloc[i]["sortval"] < 0:
+        to_buy_eur = to_compute * df_for_computation.iloc[i]["sortval"] * -0.01
+        if to_buy_eur < 100:
+            to_buy_number[df_for_computation.iloc[i]["Symbol"]] = (df_for_computation.iloc[i]["Symbol"], 0)
+        else:
+            if to_buy_eur < value:
+                amount = int(to_buy_eur/df_for_computation.iloc[i]["Current Price"])
+                to_buy_number[df_for_computation.iloc[i]["Symbol"]] = (df_for_computation.iloc[i]["Symbol"], amount)
+
+                value -= amount*df_for_computation.iloc[i]["Current Price"]
+
+                total_amount_eur += amount*df_for_computation.iloc[i]["Current Price"]
+            else:
+                amount = int(value/df_for_computation.iloc[i]["Current Price"])
+                to_buy_number[df_for_computation.iloc[i]["Symbol"]] = (df_for_computation.iloc[i]["Symbol"], amount)
+
+                value -= amount*df_for_computation.iloc[i]["Current Price"]
+
+                total_amount_eur += amount*df_for_computation.iloc[i]["Current Price"]
+    else:
+        to_buy_number[df_for_computation.iloc[i]["Symbol"]] = (df_for_computation.iloc[i]["Symbol"], 0)
+
+df4 = pd.DataFrame.from_dict(to_buy_number, orient="index", columns = ["Symbol", "To Buy"])
+
+df = pd.merge(df, df4, on=["Symbol"])
+
+df = df[["Symbol", "Name", "Quantity", "To Buy", "Current Price", "Owned Percentage", "Desired Percentage"]]
 
 st.table(df)
+st.write(total_amount_eur)
