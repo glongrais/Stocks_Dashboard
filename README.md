@@ -41,7 +41,7 @@ The portfolio is stored in the JSON file in ``` ./ressources/stocks.json ```. Th
 ]
 ```
 
-## Ressources 
+## Resources 
 
 ### yfinance
 
